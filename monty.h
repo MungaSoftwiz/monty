@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+
+
+#define LINE_LENGTH 1024
 
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
@@ -24,6 +28,25 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 
+typedef stack_t *s_node;
+
+/**
+ * struct my_struct - store some data
+ * @data: push value
+ * @fd: file discriptor
+ * Description: Structure to hold the push value
+ */
+
+ typedef struct my_struct
+ {
+	int data;
+	FILE *fd;
+	int line_num;
+	s_node current;
+ } my_struct;
+
+
+ extern my_struct *my_node;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -40,6 +63,8 @@ typedef struct instruction_s
 
 /* stack operation functions */
 void push(int num, int line_number);
+void _pint (s_node *stack, unsigned int line_number);
+void unknown(char *op, int *line_num);
 
 /* utility functins */
 int _isdigit(char *s);
