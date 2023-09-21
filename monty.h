@@ -62,7 +62,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* stack operation functions */
-void push(int num, int line_number);
+int _push(stack_t **top, char *args, unsigned int line_number);
 void _pint (s_node *stack, unsigned int line_number);
 void unknown(char *op, int *line_num);
 
@@ -71,4 +71,8 @@ int _isdigit(char *s);
 
 /* error functions */
 void malloc_error(void);
+
+/* opcode handling & checks */
+int _comment(char *op);
+void handle_opcode(s_node __attribute__((unused))*stack, char __attribute__((unused))*op, int __attribute__((unused))*line_num)
 #endif /* MONTY_H */
