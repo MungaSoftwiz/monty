@@ -1,20 +1,22 @@
 #include "monty.h"
 
-my_struct *m_node = NULL;
+/* my_struct *my_node = NULL;*/
+
 
 /**
  * main - Monty interpreter
  * @ac: argument count
- * @av: argument vector 
+ * @av: argument vector
  * Return: 0
 */
 
 int main(int ac, char **av)
 {
 	FILE *file;
+  
 	char *fn = NULL; int strln = 0;
 	char line[LINE_LENGTH]; 
-
+  
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -52,7 +54,7 @@ int main(int ac, char **av)
         }
     }
 
-    fclose(file); 
+    fclose(file);
     free_stack(stack);
 
     return (EXIT_SUCCESS);
