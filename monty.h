@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stddef.h>
 
 #define LINE_LENGTH 1024
 
@@ -40,9 +40,10 @@ typedef stack_t *s_node;
  typedef struct my_struct
  {
 	int data;
-	FILE *fd;
+	FILE *file;
 	int line_num;
 	s_node current;
+	s_node head;
  } my_struct;
 
 
@@ -65,6 +66,12 @@ typedef struct instruction_s
 int _push(stack_t **top, char *args, unsigned int line_number);
 void _pint (s_node *stack, unsigned int line_number);
 void unknown(char *op, int *line_num);
+int _comment(char *fn);
+void handle_opcode(s_node *stack, int str_len, char *fn, int *line_num);
+void free_close(void);
+void free_stack(void);
+void nop(s_node *stack, unsigned int line_num)
+size_t count_node(void);
 
 /* utility functins */
 int _isdigit(char *s);
