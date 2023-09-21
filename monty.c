@@ -1,6 +1,6 @@
 #include "monty.h"
 
-my_struct *my_node = NULL;
+my_struct *m_node = NULL;
 
 /**
  * main - Monty interpreter
@@ -12,7 +12,7 @@ my_struct *my_node = NULL;
 int main(int ac, char **av)
 {
 	FILE *file;
-	char *op = NULL;
+	char *fn = NULL; int strln = 0;
 	char line[LINE_LENGTH]; 
 
 	if (ac != 2)
@@ -29,17 +29,26 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 
-	my_struct my_node = {0};
-	my_node.fd = file;
+	m_node = malloc(sizeof(my_struct));
 
-	s_node stack = NULL;
+	if(!m_node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	m_node->data = 0;
+	m_node->head = NULL;
+	m_node->current = NULL;
+	m_node->file = file;
 
 	while (fgets(line, sizeof(line), file))
 	{
-		op = strtok(line, " \t");
-        if (_comment(op))
+		fn = strtok(line, " \t");
+		strln = strlen(fn);
+		if (_comment(fn))
         {
-            handle_opcode(&stack, strlen(op), op, &(my_node.line_num));
+            handle_opcode(&stack, strlen(fn), fn, &(my_node.line_num));
         }
     }
 
@@ -54,16 +63,16 @@ int main(int ac, char **av)
 
 /**
  * _comment - Check if the line is a comment
- * @op: The first string
+ * @fn: The first string
  *
  * Return: 0, else 1
  */
 
-int _comment(char *op)
+int _comment(char *fn)
 {
-	if (op)
+	if (fn)
 	{
-		if (op[0] == '#')
+		if (fn[0] == '#')
 			return (0);
 	}
 	return (1);
