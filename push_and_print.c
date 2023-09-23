@@ -8,6 +8,7 @@
  *
  * Return: success or failure
  */
+
 int _push(stack_t **top, char *args, unsigned int line_number)
 {
 	stack_t *new_node;
