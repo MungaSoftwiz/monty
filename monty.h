@@ -28,26 +28,7 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 
-typedef stack_t *s_node;
 
-/**
- * struct my_struct - store some data
- * @data: push value
- * @fd: file discriptor
- * Description: Structure to hold the push value
- */
-
- typedef struct my_struct
- {
-	int data;
-	FILE *file;
-	int line_num;
-	s_node current;
-	s_node head;
- } my_struct;
-
-
- extern my_struct *my_node;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -63,6 +44,11 @@ typedef struct instruction_s
 } instruction_t;
 
 /* stack operation functions */
+<<<<<<< HEAD
+void push(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+=======
 int _push(stack_t **top, char *args, unsigned int line_number);
 void _pint (s_node *stack, unsigned int line_number);
 void unknown(char *op, int *line_num);
@@ -72,6 +58,7 @@ void free_close(void);
 void free_stack(void);
 void nop(s_node *stack, unsigned int line_num)
 size_t count_node(void);
+>>>>>>> e385f42456b2bc262639187f840f0db315db3004
 
 /* utility functins */
 int _isdigit(char *s);
