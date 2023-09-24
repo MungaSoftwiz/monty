@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * div - divide the elements of the stack
+ * @stack: Pointer to a stack
+ * @line_number: Line number of the command 
+ */
+
 div(stack_t **stack, unsigned int line_number)
 {
 		int count = 0;
