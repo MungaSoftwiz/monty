@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * add - add the top two elements
+ * @stack: Pointer to a stack
+ * @line_number: Line number of the command 
+ */
+
 void add(stack_t **stack, unsigned int line_number)
 {
 		int count = 0;
