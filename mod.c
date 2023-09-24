@@ -1,4 +1,9 @@
 #include "monty.h"
+/**
+ * mod - computes the rest of division
+ * @stack: Pointer to a stack
+ * @line_number: Line number of the command 
+ */
 
 void mod(stack_t **stack, unsigned int line_number)
 {
@@ -13,7 +18,7 @@ void mod(stack_t **stack, unsigned int line_number)
 
         if (m < 2)
         {
-                fprintf(stderr, "L%u: can't swap, stack too short\n", line_number)
+                fprintf(stderr, "L%u: can't div, stack too short\n", line_number)
                 exit(EXIT_FAILURE);
         }
 
