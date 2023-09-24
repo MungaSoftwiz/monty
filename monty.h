@@ -44,21 +44,23 @@ typedef struct instruction_s
 } instruction_t;
 
 /* stack operation functions */
-<<<<<<< HEAD
+
 void push(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
-=======
-int _push(stack_t **top, char *args, unsigned int line_number);
-void _pint (s_node *stack, unsigned int line_number);
-void unknown(char *op, int *line_num);
-int _comment(char *fn);
-void handle_opcode(s_node *stack, int str_len, char *fn, int *line_num);
-void free_close(void);
-void free_stack(void);
-void nop(s_node *stack, unsigned int line_num)
-size_t count_node(void);
->>>>>>> e385f42456b2bc262639187f840f0db315db3004
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void div(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
 
 /* utility functins */
 int _isdigit(char *s);
