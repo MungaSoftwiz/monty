@@ -1,12 +1,10 @@
 #include "monty.h"
 
-/**
-* pall - prints all values  in a stack
-*
-* @stack: head of the linked list
-* @line_number: line number
-* Return: Nothing
-*/
+ * pall - prints all the values on the stack
+ * @stack: Pointer to a stack
+ * @line_number: Line number of the command
+ * Return: Nothing
+ */
 
 void pall(stack_t **stack, unsigned int line_number)
 {

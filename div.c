@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * div - divide the elements of the stack
+ * @stack: Pointer to a stack
+ * @line_number: Line number of the command 
+ */
+
 div(stack_t **stack, unsigned int line_number)
 {
 		int count = 0;
@@ -13,7 +19,7 @@ div(stack_t **stack, unsigned int line_number)
 
         if (m < 2)
         {
-                fprintf(stderr, "L%u: can't swap, stack too short\n", line_number)
+                fprintf(stderr, "L%u: can't div, stack too short\n", line_number)
                 exit(EXIT_FAILURE);
         }
 
