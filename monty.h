@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stddef.h>
-
+/* #include <fnctl.h> */
 #define LINE_LENGTH 1024
 
 #define EXIT_FAILURE 1
@@ -44,29 +44,51 @@ typedef struct instruction_s
 } instruction_t;
 
 /* stack operation functions */
-<<<<<<< HEAD
-void push(stack_t **stack, unsigned int line_number);
+/* void push(stack_t **stack, unsigned int line_number); */
 void pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
-=======
-int _push(stack_t **top, char *args, unsigned int line_number);
-void _pint (s_node *stack, unsigned int line_number);
-void unknown(char *op, int *line_num);
-int _comment(char *fn);
-void handle_opcode(s_node *stack, int str_len, char *fn, int *line_num);
-void free_close(void);
-void free_stack(void);
-void nop(s_node *stack, unsigned int line_num)
-size_t count_node(void);
->>>>>>> e385f42456b2bc262639187f840f0db315db3004
+void add(stack_t **stack, unsigned int line_number);
+void divv(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_num);
+
+/* free functions */
+void free_stack(stack_t *top);
+void free_all(char **argv);
+
+/* tokenization strings */
+size_t node_count(stack_t *head);
+int empty_string(char *s, char *delimiter);
+char *tokenization(char **str, const char *delimiter);
+char **string_split(char *input, char *delimiter);
+char **split_helper(char *input, char *delimiter);
+int execute_script(FILE *value);
 
 /* utility functins */
 int _isdigit(char *s);
+int _strlen(char *string);
+int _strcmp(char *string1, char *string2);
+char *_strcpy(char *dest, char *src);
+char *_strdup(char *string);
 
 /* error functions */
 void malloc_error(void);
+void unknown(char *op, int line_num);
+void open_error(char *filename);
 
 /* opcode handling & checks */
 int _comment(char *op);
-void handle_opcode(s_node __attribute__((unused))*stack, char __attribute__((unused))*op, int __attribute__((unused))*line_num)
+int  handle_opcode(stack_t  **stack, char **av, unsigned int line_number);
+
+/* print functions */
+void pchar(stack_t **stack, unsigned int line_num);
+void pstr(stack_t **stack, unsigned int line_number);
+
+
 #endif /* MONTY_H */

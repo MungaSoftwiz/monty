@@ -1,8 +1,5 @@
 #include "monty.h"
 
-/* my_struct *my_node = NULL;*/
-
-
 /**
  * main - Monty interpreter
  * @ac: argument count
@@ -12,53 +9,25 @@
 
 int main(int ac, char **av)
 {
-	FILE *file;
-  
-	char *fn = NULL; int strln = 0;
-	char line[LINE_LENGTH]; 
-  
+	FILE *fp;
+
 	if (ac != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
-	}
-
-	file = fopen(av[1], "r");
-
-	if (!file)
-	{
-		perror(av[1]);
-		return (EXIT_FAILURE);
-	}
-
-	m_node = malloc(sizeof(my_struct));
-
-	if(!m_node)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
+		fprintf(stderr, "USAGE: monty fp\n");
 		exit(EXIT_FAILURE);
 	}
+	fp = fopen(av[1], "r");
+	if (fp == NULL)
+		open_error(av[1]);
 
-	m_node->data = 0;
-	m_node->head = NULL;
-	m_node->current = NULL;
-	m_node->file = file;
+	execute_script(fp);
 
-	while (fgets(line, sizeof(line), file))
-	{
-		fn = strtok(line, " \t");
-		strln = strlen(fn);
-		if (_comment(fn))
-        {
-            handle_opcode(&stack, strlen(fn), fn, &(my_node.line_num));
-        }
-    }
+	if (fp != NULL)
+		fclose(fp);
 
-    fclose(file);
-    free_stack(stack);
-
-    return (EXIT_SUCCESS);
+	return (0);
 }
+
 
 
 

@@ -5,57 +5,35 @@
  * handle_opcode - Determine which function
  * to execute from the command
  * @stack: pointer to stack
- * @strlen: length of command
- * @op: command passed
- * @line_num: line number of command
+ * @av: command arguments passed
+ * @line_number: line number of command
  *
  * Return: Nothing
  */
 
-void handle_opcode(s_node *stack, char *op, int *line_num)
+int handle_opcode(stack_t  **stack, char **av, unsigned int line_number)
 {
-	(void)stack;
-	(void)op;
-	(void)line_num;
-
-	int i = 0;
-
+	int index;
 
 	instruction_t look_up[] = {
-		{"push", _push}, {"pall", _pall},
-		{"pint", _pint},{NULL, NULL}
+		{"push", push}, {"pall", pall},
+		{"pint", pint}, {"pop", pop},
+		{"add", add}, {"sub", sub},
+		{"mul", mul}, {"div", divv},
+		{"mod", mod}, {"swap", swap},
+		{"pstr", pstr}, {"pchar", pchar},
+		{NULL, NULL}
 	};
 
-	++(line_num);
-
-	if (str_len)
+	for (index = 0; look_up[index].opcode != NULL; index++)
 	{
-		if (op[strlen(op) - 1] == '\n')
-			op[strlen(op) - 1] = '\0';
-
-		for (i = 0; look_up[i].opcode != NULL; i++)
+		if (strcmp(look_up[index].opcode, av[0]) == 0)
 		{
-			if (strncmp(look_up[i].opcode, op, strlen(look_up[i].opcode)) == 0)
-			{
-				if (strlen(look_up[i].opcode) == strlen(op))
-				{
-					look_up[i].f(stack, line_num);
-					return;
-				}
-			}
+			look_up[index].f(stack, line_number);
+			return (EXIT_SUCCESS);
 		}
-		unknown(op, line_num);
 	}
-}
-
-
-/**
- * unknown - Print error message for unknown command
- * @op: command
- * @line_num: line number of command
- */
-void unknown(char *op, int *line_num)
-{
-	fprintf(stderr, "L%d: unknown instruction %s\n", *line_num, op);
-	free_close();
+	free_stack(*stack);
+	unknown(av[0], line_number);
+	return (EXIT_SUCCESS);
 }

@@ -1,29 +1,30 @@
 #include "monty.h"
 
 /**
- * div - divide the elements of the stack
+ * divv - divide the elements of the stack
  * @stack: Pointer to a stack
- * @line_number: Line number of the command 
+ * @line_number: Line number of the command
  */
 
-div(stack_t **stack, unsigned int line_number)
+void divv(stack_t **stack, unsigned int line_number)
 {
-		int count = 0;
-        stack_t tmp = *stack;
+	int count = 0;
 
-		while(tmp)
-		{
-				count++;
-				tmp = tmp->next;
-        }
-
-        if (m < 2)
-        {
-                fprintf(stderr, "L%u: can't div, stack too short\n", line_number)
-                exit(EXIT_FAILURE);
-        }
-
-        tmp = (*stack)->next;
-        tmp->n = tmp->n / (*stack)->n;
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		count = (*stack)->next->n / (*stack)->n;
+		(*stack)->next->n = count;
+		pop(stack, line_number);
+	}
 
 }

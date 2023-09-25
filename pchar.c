@@ -5,23 +5,18 @@
  * @stack: Pointer to a stack
  * @line_num: Line number the command is
  */
-void pchar(s_node **stack, unsigned int line_num)
+void pchar(stack_t **stack, unsigned int line_num)
 {
-	int val = 0;
-
-	(void)stack;
-
-	if (!(m_node->current))
+	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_num);
-		free_close();
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_num);
+		exit(EXIT_FAILURE);
 	}
-	val = m_node->current->n;
-	if (!isascii(val))
-		printf("%c\n", val);
+	if ((*stack)->n >= 0 && (*stack)->n < 128)
+		printf("%c\n", (*stack)->n);
 	else
 	{
-		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_num);
-		free_close();
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_num);
+		exit(EXIT_FAILURE);
 	}
 }

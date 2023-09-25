@@ -3,7 +3,7 @@
 /**
  * pop - removes the top element of the stack
  * @stack: Pointer to a stack
- * @line_number: Line number of the command 
+ * @line_number: Line number of the command
  */
 
 void pop(stack_t **stack, unsigned int line_number)
@@ -12,10 +12,11 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		fprintf(stderr,"L%u: can't pop an empty stack\n, line_number");
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	tmp = *stack;
-	*tmp = (*stack)->next;
+	*stack = (*stack)->next;
+	free(tmp);
 }

@@ -2,32 +2,39 @@
 
 /**
  * free_stack - Free a stack
+ * @head: a pointer to the head of the stack
  */
 
-void free_stack(void)
+void free_stack(stack_t *head)
 {
-	s_node temp = NULL, temp2 = NULL;
+	stack_t *temp = head;
 
-	if (!my_node)
+	if (head == NULL)
 		return;
-	
-	temp = my_node->current;
-	if (!temp)
-		return;
-	while (temp)
+
+	while (head)
 	{
-		temp2 = temp->next;
+		head = head->next;
 		free(temp);
-		temp = temp2;
+		temp = head;
 	}
 }
 
 /**
- * free_close - Free all memory and exit with failure
+ * free_all - Free all memory and exit with failure
+ * @argv: pointer to memory to be freed
  */
-void free_close(void)
+void free_all(char **argv)
 {
-	free_stack();
-	free(my_node);
-	exit(EXIT_FAILURE);
+	int index = 0;
+
+	if (argv == NULL)
+		return;
+
+	while (argv[index] != NULL)
+	{
+		free(argv[index]);
+		index++;
+	}
+	free(argv);
 }
