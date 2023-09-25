@@ -3,23 +3,24 @@
 /**
  * div - divide the elements of the stack
  * @stack: Pointer to a stack
- * @line_number: Line number of the command 
+ * @line_number: Line number of the command
  */
 
 void rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = NULL;
+	(void)line_number;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-		return;
-
-	tmp = *stack;
-
-	for (tmp->next != NULL; tmp == tmp->next)
+	if (*stack != NULL || (*stack)->next != NULL)
 	{
-		tmp->prev = NULL;
+		stack_t *tmp = *stack;
+
+		while (tmp->next != NULL)
+		{
+			tmp = tmp->next;
+		}
 		tmp->next = *stack;
-		tmp->prev = NULL;
 		(*stack)->prev = tmp;
 		*stack = tmp;
+		(*stack)->prev = NULL;
 	}
+}
