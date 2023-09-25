@@ -44,7 +44,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* stack operation functions */
-/* void push(stack_t **stack, unsigned int line_number); */
+void push(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
@@ -54,7 +54,6 @@ void mod(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
-void push(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_num);
 
@@ -69,6 +68,9 @@ char *tokenization(char **str, const char *delimiter);
 char **string_split(char *input, char *delimiter);
 char **split_helper(char *input, char *delimiter);
 int execute_script(FILE *value);
+
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
 
 /* utility functins */
 int _isdigit(char *s);
